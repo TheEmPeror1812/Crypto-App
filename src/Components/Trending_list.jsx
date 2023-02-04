@@ -1,4 +1,4 @@
-import { HStack, Img, Stack, VStack } from '@chakra-ui/react';
+import { Img, Stack, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { server } from '../index';
@@ -21,7 +21,8 @@ function Trendinglist() {
                 Setloading(false);
             }
             catch (error) {
-
+                SetError(true);
+                Setloading(false);
             }
         }
         fetch_trending_list();
@@ -60,17 +61,17 @@ export default Trendinglist;
 const Card = ({ name, symbol, rank, imgSrc, score }) => (
     <Stack justifyContent={"centre"} alignItems={'center'} width={"80%"}>
         <VStack bgColor={"gray.100"} borderRadius={"20px"} my={"10px"} w={"80%"} color={"black"} >
-            <HStack justifyContent={"space-between"} w={"80%"}>
-                <Img src={imgSrc} alt={"Icon"} h={"89px"} py={"10px"} w={"65px"}></Img>
-                <VStack>
+            <Stack justifyContent={"space-between"} w={"80%"} direction={["column", "row"]}>
+                <Img src={imgSrc} alt={"Icon"} h={"89px"} py={"10px"} alignSelf={"center"} w={"65px"}></Img>
+                <VStack alignSelf={"center"}>
                     <h2>Symbol = {symbol}</h2>
                     <h1>Name = {name}</h1>
                 </VStack>
-                <VStack>
+                <VStack alignSelf={"center"}>
                     <h1>Rank :- {rank}</h1>
                     <h1>Score :- {score}</h1>
                 </VStack>
-            </HStack>
+            </Stack>
         </VStack>
     </Stack>
 )

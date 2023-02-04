@@ -27,7 +27,6 @@ function Coins() {
     const fetchCoins = async () => {
       try {
         const { data } = await axios.get(`${server}/coins/markets?vs_currency=${currency}&page=${page}`)
-        console.log(data)
         Setcoins(data);
         Setloading(false);
       }
